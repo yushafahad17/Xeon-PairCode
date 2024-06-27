@@ -1,5 +1,5 @@
 {
-  "name": "Xeon-PairCode",
+  "name": "Aethers-PairCode",
   "version": "1.0.0",
   "description": "Connect Whatsapp With Baileys Code Pairing",
   "main": "index.js",
@@ -13,9 +13,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DGXeon/Xeon-PairCode.git"
+    "url": "git+https://github.com/yushafahad17"
   },
-  "author": "DGXeon",
+  "author": "AethersCode",
   "license": "ISC",
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",

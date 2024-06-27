@@ -12,7 +12,7 @@ const readline = require("readline")
 const { parsePhoneNumber } = require("libphonenumber-js")
 
 
-let phoneNumber = "916909137213"
+let phoneNumber = "6285798045817"
 
 const pairingCode = !!phoneNumber || process.argv.includes("--pairing-code")
 const useMobile = process.argv.includes("--mobile")
@@ -26,7 +26,7 @@ const question = (text) => new Promise((resolve) => rl.question(text, resolve))
 let { version, isLatest } = await fetchLatestBaileysVersion()
 const {  state, saveCreds } =await useMultiFileAuthState(`./sessions`)
     const msgRetryCounterCache = new NodeCache() // for retry message, "waiting message"
-    const XeonBotInc = makeWASocket({
+    const AethersBotInc = makeWASocket({
         logger: pino({ level: 'silent' }),
         printQRInTerminal: !pairingCode, // popping up QR in terminal log
       mobile: useMobile, // mobile api (prone to bans)
@@ -51,7 +51,7 @@ const {  state, saveCreds } =await useMultiFileAuthState(`./sessions`)
 
     // login use pairing code
    // source code https://github.com/WhiskeySockets/Baileys/blob/master/Example/example.ts#L61
-   if (pairingCode && !XeonBotInc.authState.creds.registered) {
+   if (pairingCode && !AethersBotInc.authState.creds.registered) {
       if (useMobile) throw new Error('Cannot use pairing code with mobile api')
 
       let phoneNumber
@@ -59,45 +59,45 @@ const {  state, saveCreds } =await useMultiFileAuthState(`./sessions`)
          phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
 
          if (!Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v))) {
-            console.log(chalk.bgBlack(chalk.redBright("Start with country code of your WhatsApp Number, Example : +916909137213")))
+            console.log(chalk.bgBlack(chalk.redBright("Start with country code of your WhatsApp Number, Example : +628xxx")))
             process.exit(0)
          }
       } else {
-         phoneNumber = await question(chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number 😍\nFor example: +916909137213 : `)))
+         phoneNumber = await question(chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number 😍\nFor example: +628xxx : `)))
          phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
 
          // Ask again when entering the wrong number
          if (!Object.keys(PHONENUMBER_MCC).some(v => phoneNumber.startsWith(v))) {
-            console.log(chalk.bgBlack(chalk.redBright("Start with country code of your WhatsApp Number, Example : +916909137213")))
+            console.log(chalk.bgBlack(chalk.redBright("Start with country code of your WhatsApp Number, Example : +628xxx")))
 
-            phoneNumber = await question(chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number 😍\nFor example: +916909137213 : `)))
+            phoneNumber = await question(chalk.bgBlack(chalk.greenBright(`Please type your WhatsApp number 😍\nFor example: +628xxx : `)))
             phoneNumber = phoneNumber.replace(/[^0-9]/g, '')
             rl.close()
          }
       }
 
       setTimeout(async () => {
-         let code = await XeonBotInc.requestPairingCode(phoneNumber)
+         let code = await AethersBotInc.requestPairingCode(phoneNumber)
          code = code?.match(/.{1,4}/g)?.join("-") || code
          console.log(chalk.black(chalk.bgGreen(`Your Pairing Code : `)), chalk.black(chalk.white(code)))
       }, 3000)
    }
 //------------------------------------------------------
-    XeonBotInc.ev.on("connection.update",async  (s) => {
+    AethersBotInc.ev.on("connection.update",async  (s) => {
         const { connection, lastDisconnect } = s
         if (connection == "open") {
             await delay(1000 * 10)
-            await XeonBotInc.sendMessage(XeonBotInc.user.id, { text: `🪀Support/Contact Developer\n\n\n⎆Donate: https://i.ibb.co/w46VQ8D/Picsart-22-10-08-06-46-30-674.jpg\n\n⎆YouTube: https://youtube.com/@DGXeon\n\n⎆Telegram Channel: https://t.me/xeonbotinc\n\n⎆Telegram Chat: https://t.me/+AYOyJflnt-AzNGFl\n\n⎆WhatsApp Gc1: https://chat.whatsapp.com/Kjm8rnDFcpb04gQNSTbW2d\n\n⎆WhatsApp Gc2: https://chat.whatsapp.com/EEOnU0V7dl9HF1mMFO8QWa\n\n⎆WhatsApp Gc3: https://chat.whatsapp.com/Dh0lD0Ee5hN1JMFXNqtxSG\n\n⎆WhatsApp Pm: Wa.me/916909137213\n\n⎆Instagram: https://instagram.com/unicorn_xeon13\n\n⎆GitHub: https://github.com/DGXeon/\n\n⎆Blog: https://dreamguyxeonfiles.blogspot.com/2022/05/bots%20whatsapp%20mods.html?m=1\n\n\n` });
-            let sessionXeon = fs.readFileSync('./sessions/creds.json');
+            await AethersBotInc.sendMessage(AethersBotInc.user.id, { text: `🪀Support/Contact Developer\n\n\n⎆Donate: https://telegra.ph/file/9a8dad3c76582e8abd651.jpg\n\n⎆Website: https://https://bioku.my.id/aetherscode\n\n⎆WhatsApp: https://wa.me/6285798045817\n\n⎆Telegram: https://t.me/oh_pahad\n\n⎆GitHub: https://github.com/yushafahad17/\n\n` });
+            let sessionAethers = fs.readFileSync('./sessions/creds.json');
             await delay(1000 * 2) 
-             const xeonses = await  XeonBotInc.sendMessage(XeonBotInc.user.id, { document: sessionXeon, mimetype: `application/json`, fileName: `creds.json` })
-             await XeonBotInc.sendMessage(XeonBotInc.user.id, { text: `⚠️Do not share this file with anybody⚠️\n
+             const xeonses = await  AethersBotInc.sendMessage(AethersBotInc.user.id, { document: sessionAethers, mimetype: `application/json`, fileName: `creds.json` })
+             await AethersBotInc.sendMessage(AethersBotInc.user.id, { text: `⚠️Do not share this file with anybody⚠️\n
 ┌─❖
 │ Ohayo 😽
 └┬❖  
-┌┤✑  Thanks for using X-PairCode
+┌┤✑  Thanks for using Thers-PairCode
 │└────────────┈ ⳹        
-│©2020-2023 XeonBotInc 
+│©2021-2024 AethersCode 
 └─────────────────┈ ⳹\n\n ` }, {quoted: xeonses});
               await delay(1000 * 2) 
               process.exit(0)
@@ -111,8 +111,8 @@ const {  state, saveCreds } =await useMultiFileAuthState(`./sessions`)
             qr()
         }
     })
-    XeonBotInc.ev.on('creds.update', saveCreds)
-    XeonBotInc.ev.on("messages.upsert",  () => { })
+    AethersBotInc.ev.on('creds.update', saveCreds)
+    AethersBotInc.ev.on("messages.upsert",  () => { })
 }
 qr()
 
